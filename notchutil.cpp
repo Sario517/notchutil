@@ -28,11 +28,28 @@ struct {
 
 
 static struct {
-    const char* mbp2021a = "MacBookPro18,3"; // 14"
-    const char* mbp2021b = "MacBookPro18,4"; // 16"
-    const char* mba2022 = "Mac14,2"; // Air
-}macTypes;
-
+    // M1 Series
+    const char* mbp2021a = "MacBookPro18,3"; // 14" M1
+    const char* mbp2021b = "MacBookPro18,4"; // 16" M1
+    
+    // M2 Series
+    const char* mba2022 = "Mac14,2";         // Air 13" M2
+    const char* mbp2023a = "Mac14,5";        // 14" M2
+    const char* mbp2023b = "Mac14,6";        // 16" M2
+    const char* mba2023 = "Mac14,15";        // Air 15" M2
+    
+    // M3 Series
+    const char* mbp2023c = "Mac15,3";        // 14" M3
+    const char* mbp2023d = "Mac15,4";        // 16" M3
+    const char* mba2024a = "Mac15,10";       // Air 13" M3
+    const char* mba2024b = "Mac15,11";       // Air 15" M3
+    
+    // M4 Series
+    const char* mbp2024a = "Mac16,1";        // 14" M4
+    const char* mbp2024b = "Mac16,5";        // 16" M4
+    const char* mba2024c = "Mac16,12";       // Air 13" M4
+    const char* mba2024d = "Mac16,13";       // Air 15" M4
+} macTypes;
 
 
 const char* helpText =
@@ -54,17 +71,44 @@ const std::string versionText =
 
 const char* validMacBooksText =
             "valid models:\t\tname:\n\
-            \rMacBook Pro 2021 14\"\tMacBookPro18,3\n\
-            \rMacBook Pro 2021 16\"\tMacBookPro18,4\n\
-            \rMacBook Air 2022\tMac14,2\n";
-
-
+            \rMacBook Pro 2021 14\" M1\tMacBookPro18,3\n\
+            \rMacBook Pro 2021 16\" M1\tMacBookPro18,4\n\
+            \rMacBook Pro 2023 14\" M2\tMac14,5\n\
+            \rMacBook Pro 2023 16\" M2\tMac14,6\n\
+            \rMacBook Pro 2023 14\" M3\tMac15,3\n\
+            \rMacBook Pro 2023 16\" M3\tMac15,4\n\
+            \rMacBook Pro 2024 14\" M4\tMac16,1\n\
+            \rMacBook Pro 2024 16\" M4\tMac16,5\n\
+            \rMacBook Air 2022 13\" M2\tMac14,2\n\
+            \rMacBook Air 2023 15\" M2\tMac14,15\n\
+            \rMacBook Air 2024 13\" M3\tMac15,10\n\
+            \rMacBook Air 2024 15\" M3\tMac15,11\n\
+            \rMacBook Air 2024 13\" M4\tMac16,12\n\
+            \rMacBook Air 2024 15\" M4\tMac16,13\n";
 
 std::tuple<int, int, int> getResolution(char* model) {
     // default height, default width, modified height for fitting the resolution below the notch
+    // M1 Series
     if (strcmp(model, macTypes.mbp2021a) == 0) return std::make_tuple(1512, 982, 945);
     if (strcmp(model, macTypes.mbp2021b) == 0) return std::make_tuple(1728, 1117, 1080);
+    
+    // M2 Series
     if (strcmp(model, macTypes.mba2022) == 0) return std::make_tuple(1280, 832, 800);
+    if (strcmp(model, macTypes.mbp2023a) == 0) return std::make_tuple(1512, 982, 945);
+    if (strcmp(model, macTypes.mbp2023b) == 0) return std::make_tuple(1728, 1117, 1080);
+    if (strcmp(model, macTypes.mba2023) == 0) return std::make_tuple(1280, 832, 800);
+    
+    // M3 Series
+    if (strcmp(model, macTypes.mbp2023c) == 0) return std::make_tuple(1512, 982, 945);
+    if (strcmp(model, macTypes.mbp2023d) == 0) return std::make_tuple(1728, 1117, 1080);
+    if (strcmp(model, macTypes.mba2024a) == 0) return std::make_tuple(1280, 832, 800);
+    if (strcmp(model, macTypes.mba2024b) == 0) return std::make_tuple(1280, 832, 800);
+    
+    // M4 Series
+    if (strcmp(model, macTypes.mbp2024a) == 0) return std::make_tuple(1512, 982, 945);
+    if (strcmp(model, macTypes.mbp2024b) == 0) return std::make_tuple(1728, 1117, 1080);
+    if (strcmp(model, macTypes.mba2024c) == 0) return std::make_tuple(1280, 832, 800);
+    if (strcmp(model, macTypes.mba2024d) == 0) return std::make_tuple(1280, 832, 800);
     
     printf("notchutil: invalid model: %s\n", model);
     printf("%s", validMacBooksText);
